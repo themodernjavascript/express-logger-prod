@@ -1,0 +1,11 @@
+{
+  "name": "express-logger-prod",
+  "version": "1.0.0",
+  "description": "The Logger for Express in production. It builds on the built-in Express logger. It will automatically rotate your logs and archive the old logs daily.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bunlong",
+  "license": "ISC"
+}
