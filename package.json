@@ -1,13 +1,13 @@
 {
   "name": "express-logger-prod",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "The Logger for Express in production. It builds on the built-in Express logger. It will automatically rotate your logs and archive the old logs daily.",
-  "main": "./src/index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bunlong",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^23.5.0",
     "morgan": "^1.9.0"
@@ -23,6 +23,9 @@
     "prod",
     "production"
   ],
+  "bugs": {
+    "url": "https://github.com/themodernjavascript/express-logger-prod/issues/new"
+  },
   "homepage": "https://github.com/themodernjavascript/express-logger-prod",
   "repository": {
     "type": "git",
