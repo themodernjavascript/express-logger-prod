@@ -2,18 +2,19 @@
   "name": "express-logger-prod",
   "version": "1.0.0",
   "description": "The Logger for Express in production. It builds on the built-in Express logger. It will automatically rotate your logs and archive the old logs daily.",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bunlong",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "morgan": "^1.9.0"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "mkdirp": "^0.5.1"
+    "datetime": "0.0.3",
+    "express": "^4.16.3"
   },
   "keywords": [
     "express",
