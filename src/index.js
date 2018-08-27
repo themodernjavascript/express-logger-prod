@@ -2,20 +2,37 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var logger = require('morgan');
+var rfs = require('rotating-file-stream')
 
-var archiveLogs = require('./utils/archive-logs');
+var genRotatingFile = require('./utils/gen-rotating-file');
 
-const defaultInterval = 60;
+module.exports = function(mode) {
+  var accessLogStream = null,
+      errorLogStream = null,
+      pathT = '';
 
-module.exports = function(options) {
-  if (!fs.existsSync(path.dirname(options.path))) fs.mkdirSync(path.dirname(options.path));
+  // if (mode === undefined || mode === 'error') {
+    pathT = 'errors/error.log';
 
-  var logStream = fs.createWriteStream(options.path, {flags: 'a'});
-  var loggerMorgan= logger(logStream, options.format);
+    errorLogStream = rfs(genRotatingFile(pathT), {
+      interval: '1d',
+      path: 'logs',
+    });
 
-  // var archiveInterval = setInterval(function() {
-    archiveLogs(logStream, options.path, options.dateFormat);
-  // }, options.interval || defaultInterval);
-  
-  return loggerMorgan;
+    return logger('combined', {
+      skip: function (req, res) { return res.statusCode < 400 }, 
+      stream: errorLogStream, 
+    });
+  // } 
+  // else if (mode === 'access') {
+  //   pathT = 'access.log';
+
+  //   accessLogStream = rfs(genRotatingFile(pathT), {
+  //     interval: '1d',
+  //     path: 'logs',
+  //     initialRotation: true,
+  //   });
+    
+  //   return logger('combined', {stream: accessLogStream});
+  // }
 }
